@@ -1,0 +1,98 @@
+﻿<Window x:Class="DoAnOOP_QuanLyKho.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+        xmlns:local="clr-namespace:DoAnOOP_QuanLyKho"
+        xmlns:uc="clr-namespace:DoAnOOP_QuanLyKho.UserControlOOP"
+        DataContext="{StaticResource LoginVM}"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="350" Width="500"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Name="loginWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <uc:ControlBarUC Tag="{Binding Title, ElementName=loginWindow}"></uc:ControlBarUC>
+        </Grid>
+        <materialDesign:Card Grid.Row="1" Height="250" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid>
+                <Grid.Resources>
+                    <Style TargetType="Grid">
+                        <Setter Property="Margin" Value="15 5 15 0"></Setter>
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" 
+                          Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                          Text="Đăng nhập" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <TextBox
+                         VerticalAlignment="Center"
+                        Text="{Binding UserName}"
+                         materialDesign:HintAssist.Hint="Tên đăng nhập"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" /> 
+                </Grid>
+                <Grid Grid.Row="2">
+                    <PasswordBox
+                         x:Name="FloatingPasswordBox"
+                         VerticalAlignment="Center"
+                         materialDesign:HintAssist.Hint="Mật khẩu"
+                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}">
+
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PasswordChanged">
+                                <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" CommandParameter="{Binding ElementName=FloatingPasswordBox}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </PasswordBox>
+                </Grid>
+                <Grid Grid.Row="3" Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>   
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Button
+                            IsDefault="True"
+                            Command="{Binding LoginCommand}"
+                            CommandParameter="{Binding ElementName=loginWindow}"
+                            Content="Đăng nhập"
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Width="120" />
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Button
+                            Command="{Binding CloseCommand}"
+                            CommandParameter="{Binding ElementName=loginWindow}"
+                            Content="Thoát"                       
+                            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                            Width="120" />
+                    </Grid>
+                            
+                </Grid>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>
