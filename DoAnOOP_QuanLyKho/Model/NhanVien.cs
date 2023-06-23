@@ -24,20 +24,27 @@ namespace DoAnOOP_QuanLyKho.Model
         }
 
         public int MaNV { get; set; }
-        public string TenNV { get; set; }
+
+        private string _TenNV;
+        public string TenNV { get => _TenNV; set { _TenNV = value; OnPropertyChanged(); } }
 
         private string _SDT;
         public string SDT { get => _SDT; set { _SDT = value; OnPropertyChanged(); } }
+        public Nullable<int> GioiTinh { get; set; }
 
         private string _CMND;
         public string CMND { get => _CMND; set { _CMND = value; OnPropertyChanged(); } }
 
-        private DateTime _NgaySinh;
-        public DateTime NgaySinh { get => _NgaySinh; set { _NgaySinh = value; OnPropertyChanged(); } }
-        public Nullable<int> GioiTinh { get; set; }
+        private System.DateTime _NgaySinh;
+        public System.DateTime NgaySinh { get => _NgaySinh; set { _NgaySinh = value; OnPropertyChanged(); } }
 
-        private GioiTinh _GioiTinh1;
-        public virtual GioiTinh GioiTinh1 { get => _GioiTinh1; set { _GioiTinh1 = value; OnPropertyChanged(); } }
+        public int MaCV { get; set; }
+
+        private ChucVu _ChucVu;
+        public virtual ChucVu ChucVu { get => _ChucVu; set { _ChucVu = value; OnPropertyChanged(); } }
+
+        private GioiTinh _GioiTInh1;
+        public virtual GioiTinh GioiTinh1 { get => _GioiTInh1; set { _GioiTInh1 = value; OnPropertyChanged(); } }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuNhap> PhieuNhaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

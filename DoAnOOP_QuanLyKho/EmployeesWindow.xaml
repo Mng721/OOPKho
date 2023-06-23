@@ -39,7 +39,7 @@
 
             <materialDesign:Card Grid.Row="0" Margin="5">
                 <WrapPanel>
-                    <TextBox Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" Margin="10 5 10 5" materialDesign:HintAssist.Hint="Tên nhân viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                    <TextBox Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10 5 10 5" materialDesign:HintAssist.Hint="Tên nhân viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
                     <ComboBox materialDesign:ComboBoxAssist.MaxLength="2"
                               DisplayMemberPath="TenGT"
                               materialDesign:HintAssist.Hint="Giới tính"
@@ -50,8 +50,8 @@
                               VerticalContentAlignment="Bottom"
                               ItemsSource="{Binding GendersList}">
                     </ComboBox>
-                    <TextBox Text="{Binding SDT, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 10 5" MinWidth="150" materialDesign:HintAssist.Hint="Số điện thoại" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-                    <TextBox Text="{Binding CMND, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 10 5" materialDesign:HintAssist.Hint="CMND" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                    <TextBox Text="{Binding SDT, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 10 5" MinWidth="150" materialDesign:HintAssist.Hint="Số điện thoại" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                    <TextBox Text="{Binding CMND, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 10 5" materialDesign:HintAssist.Hint="CMND" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
                     <DatePicker Width="100"
                                 materialDesign:HintAssist.Hint="Ngày sinh"
                                 SelectedDate="{Binding NgaySinh, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='dd/MM/yyyy'}"
@@ -61,7 +61,16 @@
                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
                                 VerticalContentAlignment="Bottom"
                                 />
-
+                    <ComboBox materialDesign:ComboBoxAssist.MaxLength="2"
+                              DisplayMemberPath="TenCV"
+                              materialDesign:HintAssist.Hint="Chức vụ"
+                              Margin="0 5 10 5" 
+                              SelectedItem="{Binding SelectedPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Height="35"
+                              IsEditable="True"
+                              VerticalContentAlignment="Bottom"
+                              ItemsSource="{Binding PositionsList}">
+                    </ComboBox>
                 </WrapPanel>
             </materialDesign:Card>
 
@@ -87,6 +96,7 @@
                                 <GridViewColumn Header="Giới tính" DisplayMemberBinding="{Binding GioiTinh1.TenGT}"></GridViewColumn>
                                 <GridViewColumn Header="Ngày sinh" DisplayMemberBinding="{Binding NgaySinh, StringFormat='dd/MM/yyyy'}"></GridViewColumn>
                                 <GridViewColumn Header="CMND" DisplayMemberBinding="{Binding CMND}"></GridViewColumn>
+                                <GridViewColumn Header="Chức vụ" DisplayMemberBinding="{Binding ChucVu.TenCV}"></GridViewColumn>
                                 <GridViewColumn Header="Số điện thoại" DisplayMemberBinding="{Binding SDT}"></GridViewColumn>
                             </GridView>
                         </ListView.View>

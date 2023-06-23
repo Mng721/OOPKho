@@ -22,6 +22,7 @@ namespace DoAnOOP_QuanLyKho.Model
         }
 
         public int MaDV { get; set; }
+
         private string _TenDV;
         public string TenDV { get => _TenDV; set { _TenDV = value; OnPropertyChanged(); } }
 

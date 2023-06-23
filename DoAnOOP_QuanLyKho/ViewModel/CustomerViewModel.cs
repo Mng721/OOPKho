@@ -38,16 +38,16 @@ namespace DoAnOOP_QuanLyKho.ViewModel
         public ICommand DeleteCommand { get; set; }
 
         private string _DisplayName;
-        public string DisplayName { get => _DisplayName; set { _DisplayName = value.Trim(); OnPropertyChanged(); } }
+        public string DisplayName { get => _DisplayName; set { _DisplayName = value; OnPropertyChanged(); } }
 
         private string _DiaChi;
-        public string DiaChi { get => _DiaChi; set { _DiaChi = value.Trim(); OnPropertyChanged(); } }
+        public string DiaChi { get => _DiaChi; set { _DiaChi = value; OnPropertyChanged(); } }
 
         private string _SDT;
         public string SDT { get => _SDT; set { _SDT = value.Trim(); OnPropertyChanged(); } }
 
         private string _Email;
-        public string Email { get => _Email; set { _Email = value.Trim(); OnPropertyChanged(); } }
+        public string Email { get => _Email; set { _Email = value; OnPropertyChanged(); } }
 
         public CustomerViewModel()
         {

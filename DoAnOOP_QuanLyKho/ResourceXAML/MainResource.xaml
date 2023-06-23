@@ -7,6 +7,11 @@
     <viewmodel:UnitViewModel x:Key="UnitVM"></viewmodel:UnitViewModel>
     <viewmodel:AccountViewModel x:Key="AccountVM"></viewmodel:AccountViewModel>
     <viewmodel:SupplierViewModel x:Key="SupplierVM"></viewmodel:SupplierViewModel>
+    <viewmodel:SupplyViewModel x:Key="SupplyVM"></viewmodel:SupplyViewModel>
     <viewmodel:EmployeeViewModel x:Key="EmployeeVM"></viewmodel:EmployeeViewModel>
     <viewmodel:CustomerViewModel x:Key="CustomerVM"></viewmodel:CustomerViewModel>
+    <viewmodel:InputViewModel x:Key="InputVM"></viewmodel:InputViewModel>
+    <viewmodel:InputInfoViewModel x:Key="InputInfoVM"></viewmodel:InputInfoViewModel>
+    <viewmodel:OutputViewModel x:Key="OutputVM"></viewmodel:OutputViewModel>
+    <viewmodel:OutputInfoViewModel x:Key="OutputInfoVM"></viewmodel:OutputInfoViewModel>
 </ResourceDictionary> 

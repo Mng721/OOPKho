@@ -16,11 +16,11 @@ namespace DoAnOOP_QuanLyKho.ViewModel
         private ObservableCollection<SanPham> _List;
         public ObservableCollection<SanPham> List { get => _List; set { _List = value; OnPropertyChanged(); } }
 
-        private ObservableCollection<NhanVien> _EmployeesList;
-        public ObservableCollection<NhanVien> EmployeesList { get => _EmployeesList; set { _EmployeesList = value; OnPropertyChanged(); } }
+        private ObservableCollection<DonViTinh> _UnitList;
+        public ObservableCollection<DonViTinh> UnitList { get => _UnitList; set { _UnitList = value; OnPropertyChanged(); } }
 
-        private ObservableCollection<ChucVu> _PositionsList;
-        public ObservableCollection<ChucVu> PositionsList { get => _PositionsList; set { _PositionsList = value; OnPropertyChanged(); } }
+        private ObservableCollection<LoaiSanPham> _TypeList;
+        public ObservableCollection<LoaiSanPham> TypeList { get => _TypeList; set { _TypeList = value; OnPropertyChanged(); } }
 
         private SanPham _SelectedItem;
         public SanPham SelectedItem
@@ -33,28 +33,30 @@ namespace DoAnOOP_QuanLyKho.ViewModel
                 if (SelectedItem != null)
                 {
                     DisplayName = SelectedItem.TenSP;
+                    SelectedType = SelectedItem.LoaiSanPham;
+                    SelectedUnit = SelectedItem.DonViTinh;
                 }
             }
         }
 
-        private NhanVien _SelectedEmployee;
-        public NhanVien SelectedEmployee
+        private DonViTinh _SelectedUnit;
+        public DonViTinh SelectedUnit
         {
-            get => _SelectedEmployee;
+            get => _SelectedUnit;
             set
             {
-                _SelectedEmployee = value;
+                _SelectedUnit = value;
                 OnPropertyChanged();
             }
         }
 
-        private ChucVu _SelectedPosition;
-        public ChucVu SelectedPosition
+        private LoaiSanPham _SelectedType;
+        public LoaiSanPham SelectedType
         {
-            get => _SelectedPosition;
+            get => _SelectedType;
             set
             {
-                _SelectedPosition = value;
+                _SelectedType = value;
                 OnPropertyChanged();
             }
         }
@@ -73,26 +75,26 @@ namespace DoAnOOP_QuanLyKho.ViewModel
         {
 
             List = new ObservableCollection<SanPham>(DataProvider.Ins.DB.SanPhams);
-            EmployeesList = new ObservableCollection<NhanVien>(DataProvider.Ins.DB.NhanViens);
-            PositionsList = new ObservableCollection<ChucVu>(DataProvider.Ins.DB.ChucVus);
+            UnitList = new ObservableCollection<DonViTinh>(DataProvider.Ins.DB.DonViTinhs);
+            TypeList = new ObservableCollection<LoaiSanPham>(DataProvider.Ins.DB.LoaiSanPhams);
 
             AddCommand = new RelayCommand<object>((p) =>
             {
-                if (SelectedEmployee == null || SelectedPosition == null)
+                if (SelectedUnit == null || SelectedType == null)
                     return false;
                 return true;
 
             }, (p) => {
-                var unit = new SanPham() {  };
-                DataProvider.Ins.DB.SanPhams.Add(unit);
+                var supply = new SanPham() { TenSP = DisplayName, MaDV = SelectedUnit.MaDV, MaLoai = SelectedType.MaLoai };
+                DataProvider.Ins.DB.SanPhams.Add(supply);
                 DataProvider.Ins.DB.SaveChanges();
 
-                List.Add(unit);
+                List.Add(supply);
             });
 
             EditCommand = new RelayCommand<object>((p) =>
             {
-                if (SelectedEmployee == null || SelectedPosition == null || SelectedItem == null)
+                if (SelectedUnit == null || SelectedType == null || SelectedItem == null)
                 {
                     return false;
                 }
@@ -106,9 +108,18 @@ namespace DoAnOOP_QuanLyKho.ViewModel
                     return false;
                 }
             }, (p) => {
-                var unit = DataProvider.Ins.DB.SanPhams.Where(x => x.MaSP == SelectedItem.MaSP).SingleOrDefault();
-                unit.TenSP = DisplayName;
-
+                var supply = DataProvider.Ins.DB.SanPhams.Where(x => x.MaSP == SelectedItem.MaSP).SingleOrDefault();
+                supply.TenSP = DisplayName;
+                supply.MaLoai = SelectedType.MaLoai;
+                supply.MaDV = SelectedUnit.MaDV;
+                try
+                {
+                    DataProvider.Ins.DB.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
                 SelectedItem.TenSP = DisplayName;
             });
 

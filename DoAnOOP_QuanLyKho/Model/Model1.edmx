@@ -39,7 +39,7 @@
             <PropertyRef Name="MaDV" />
           </Key>
           <Property Name="MaDV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenDV" Type="char" MaxLength="100" Nullable="false" />
+          <Property Name="TenDV" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="GioiTinh">
           <Key>
@@ -53,7 +53,7 @@
             <PropertyRef Name="MaKH" />
           </Key>
           <Property Name="MaKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenKH" Type="char" MaxLength="100" Nullable="false" />
+          <Property Name="TenKH" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="SDT" Type="char" MaxLength="10" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -84,6 +84,7 @@
           <Property Name="GioiTinh" Type="int" />
           <Property Name="CMND" Type="char" MaxLength="12" Nullable="false" />
           <Property Name="NgaySinh" Type="date" Nullable="false" />
+          <Property Name="MaCV" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PhieuNhap">
           <Key>
@@ -120,7 +121,6 @@
           <Property Name="MaNV" Type="int" Nullable="false" />
           <Property Name="TenDangNhap" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="MatKhau" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="MaCV" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK__ChiTietPh__MaCTP__45F365D3">
           <End Role="ChiTietPhieuNhap" Type="Self.ChiTietPhieuNhap" Multiplicity="1" />
@@ -182,7 +182,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NhanVien__GioiTi__267ABA7A">
+        <Association Name="FK__NhanVien__GioiTi__29572725">
           <End Role="GioiTinh" Type="Self.GioiTinh" Multiplicity="0..1" />
           <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
           <ReferentialConstraint>
@@ -191,6 +191,18 @@
             </Principal>
             <Dependent Role="NhanVien">
               <PropertyRef Name="GioiTinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NhanVien__MaCV__286302EC">
+          <End Role="ChucVu" Type="Self.ChucVu" Multiplicity="1" />
+          <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChucVu">
+              <PropertyRef Name="MaCV" />
+            </Principal>
+            <Dependent Role="NhanVien">
+              <PropertyRef Name="MaCV" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -266,18 +278,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TaiKhoan__MaCV__2B3F6F97">
-          <End Role="ChucVu" Type="Self.ChucVu" Multiplicity="1" />
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ChucVu">
-              <PropertyRef Name="MaCV" />
-            </Principal>
-            <Dependent Role="TaiKhoan">
-              <PropertyRef Name="MaCV" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__TaiKhoan__MaNV__2C3393D0">
           <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
           <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="*" />
@@ -324,8 +324,12 @@
             <End Role="SanPham" EntitySet="SanPham" />
             <End Role="ChiTietPhieuXuat" EntitySet="ChiTietPhieuXuat" />
           </AssociationSet>
-          <AssociationSet Name="FK__NhanVien__GioiTi__267ABA7A" Association="Self.FK__NhanVien__GioiTi__267ABA7A">
+          <AssociationSet Name="FK__NhanVien__GioiTi__29572725" Association="Self.FK__NhanVien__GioiTi__29572725">
             <End Role="GioiTinh" EntitySet="GioiTinh" />
+            <End Role="NhanVien" EntitySet="NhanVien" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NhanVien__MaCV__286302EC" Association="Self.FK__NhanVien__MaCV__286302EC">
+            <End Role="ChucVu" EntitySet="ChucVu" />
             <End Role="NhanVien" EntitySet="NhanVien" />
           </AssociationSet>
           <AssociationSet Name="FK__PhieuNhap__MaNCC__30F848ED" Association="Self.FK__PhieuNhap__MaNCC__30F848ED">
@@ -351,10 +355,6 @@
           <AssociationSet Name="FK__SanPham__MaLoai__3B75D760" Association="Self.FK__SanPham__MaLoai__3B75D760">
             <End Role="LoaiSanPham" EntitySet="LoaiSanPham" />
             <End Role="SanPham" EntitySet="SanPham" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TaiKhoan__MaCV__2B3F6F97" Association="Self.FK__TaiKhoan__MaCV__2B3F6F97">
-            <End Role="ChucVu" EntitySet="ChucVu" />
-            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
           </AssociationSet>
           <AssociationSet Name="FK__TaiKhoan__MaNV__2C3393D0" Association="Self.FK__TaiKhoan__MaNV__2C3393D0">
             <End Role="NhanVien" EntitySet="NhanVien" />
@@ -399,15 +399,15 @@
             <End Role="SanPham" EntitySet="SanPhams" />
             <End Role="ChiTietPhieuXuat" EntitySet="ChiTietPhieuXuats" />
           </AssociationSet>
-          <AssociationSet Name="FK__TaiKhoan__MaCV__2B3F6F97" Association="DA_QLKhoModel.FK__TaiKhoan__MaCV__2B3F6F97">
+          <AssociationSet Name="FK__NhanVien__MaCV__286302EC" Association="DA_QLKhoModel.FK__NhanVien__MaCV__286302EC">
             <End Role="ChucVu" EntitySet="ChucVus" />
-            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
+            <End Role="NhanVien" EntitySet="NhanViens" />
           </AssociationSet>
           <AssociationSet Name="FK__SanPham__MaDV__3A81B327" Association="DA_QLKhoModel.FK__SanPham__MaDV__3A81B327">
             <End Role="DonViTinh" EntitySet="DonViTinhs" />
             <End Role="SanPham" EntitySet="SanPhams" />
           </AssociationSet>
-          <AssociationSet Name="FK__NhanVien__GioiTi__267ABA7A" Association="DA_QLKhoModel.FK__NhanVien__GioiTi__267ABA7A">
+          <AssociationSet Name="FK__NhanVien__GioiTi__29572725" Association="DA_QLKhoModel.FK__NhanVien__GioiTi__29572725">
             <End Role="GioiTinh" EntitySet="GioiTinhs" />
             <End Role="NhanVien" EntitySet="NhanViens" />
           </AssociationSet>
@@ -470,14 +470,14 @@
           </Key>
           <Property Name="TenCV" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="MaCV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="TaiKhoans" Relationship="DA_QLKhoModel.FK__TaiKhoan__MaCV__2B3F6F97" FromRole="ChucVu" ToRole="TaiKhoan" />
+          <NavigationProperty Name="NhanViens" Relationship="DA_QLKhoModel.FK__NhanVien__MaCV__286302EC" FromRole="ChucVu" ToRole="NhanVien" />
         </EntityType>
         <EntityType Name="DonViTinh">
           <Key>
             <PropertyRef Name="MaDV" />
           </Key>
           <Property Name="MaDV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenDV" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="TenDV" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SanPhams" Relationship="DA_QLKhoModel.FK__SanPham__MaDV__3A81B327" FromRole="DonViTinh" ToRole="SanPham" />
         </EntityType>
         <EntityType Name="GioiTinh">
@@ -486,14 +486,14 @@
           </Key>
           <Property Name="MaGT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenGT" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="NhanViens" Relationship="DA_QLKhoModel.FK__NhanVien__GioiTi__267ABA7A" FromRole="GioiTinh" ToRole="NhanVien" />
+          <NavigationProperty Name="NhanViens" Relationship="DA_QLKhoModel.FK__NhanVien__GioiTi__29572725" FromRole="GioiTinh" ToRole="NhanVien" />
         </EntityType>
         <EntityType Name="KhachHang">
           <Key>
             <PropertyRef Name="MaKH" />
           </Key>
           <Property Name="MaKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenKH" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="TenKH" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SDT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PhieuXuats" Relationship="DA_QLKhoModel.FK__PhieuXuat__MaKH__3E52440B" FromRole="KhachHang" ToRole="PhieuXuat" />
@@ -527,7 +527,9 @@
           <Property Name="GioiTinh" Type="Int32" />
           <Property Name="CMND" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
           <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="GioiTinh1" Relationship="DA_QLKhoModel.FK__NhanVien__GioiTi__267ABA7A" FromRole="NhanVien" ToRole="GioiTinh" />
+          <Property Name="MaCV" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ChucVu" Relationship="DA_QLKhoModel.FK__NhanVien__MaCV__286302EC" FromRole="NhanVien" ToRole="ChucVu" />
+          <NavigationProperty Name="GioiTinh1" Relationship="DA_QLKhoModel.FK__NhanVien__GioiTi__29572725" FromRole="NhanVien" ToRole="GioiTinh" />
           <NavigationProperty Name="PhieuNhaps" Relationship="DA_QLKhoModel.FK__PhieuNhap__MaNV__31EC6D26" FromRole="NhanVien" ToRole="PhieuNhap" />
           <NavigationProperty Name="PhieuXuats" Relationship="DA_QLKhoModel.FK__PhieuXuat__MaNV__3F466844" FromRole="NhanVien" ToRole="PhieuXuat" />
           <NavigationProperty Name="TaiKhoans" Relationship="DA_QLKhoModel.FK__TaiKhoan__MaNV__2C3393D0" FromRole="NhanVien" ToRole="TaiKhoan" />
@@ -577,8 +579,6 @@
           <Property Name="MaNV" Type="Int32" Nullable="false" />
           <Property Name="TenDangNhap" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MatKhau" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="MaCV" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ChucVu" Relationship="DA_QLKhoModel.FK__TaiKhoan__MaCV__2B3F6F97" FromRole="TaiKhoan" ToRole="ChucVu" />
           <NavigationProperty Name="NhanVien" Relationship="DA_QLKhoModel.FK__TaiKhoan__MaNV__2C3393D0" FromRole="TaiKhoan" ToRole="NhanVien" />
         </EntityType>
         <Association Name="FK__ChiTietPh__MaCTP__45F365D3">
@@ -641,14 +641,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TaiKhoan__MaCV__2B3F6F97">
+        <Association Name="FK__NhanVien__MaCV__286302EC">
           <End Type="DA_QLKhoModel.ChucVu" Role="ChucVu" Multiplicity="1" />
-          <End Type="DA_QLKhoModel.TaiKhoan" Role="TaiKhoan" Multiplicity="*" />
+          <End Type="DA_QLKhoModel.NhanVien" Role="NhanVien" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChucVu">
               <PropertyRef Name="MaCV" />
             </Principal>
-            <Dependent Role="TaiKhoan">
+            <Dependent Role="NhanVien">
               <PropertyRef Name="MaCV" />
             </Dependent>
           </ReferentialConstraint>
@@ -665,7 +665,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NhanVien__GioiTi__267ABA7A">
+        <Association Name="FK__NhanVien__GioiTi__29572725">
           <End Type="DA_QLKhoModel.GioiTinh" Role="GioiTinh" Multiplicity="0..1" />
           <End Type="DA_QLKhoModel.NhanVien" Role="NhanVien" Multiplicity="*" />
           <ReferentialConstraint>
@@ -835,6 +835,7 @@
           <EntitySetMapping Name="NhanViens">
             <EntityTypeMapping TypeName="DA_QLKhoModel.NhanVien">
               <MappingFragment StoreEntitySet="NhanVien">
+                <ScalarProperty Name="MaCV" ColumnName="MaCV" />
                 <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
                 <ScalarProperty Name="CMND" ColumnName="CMND" />
                 <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
@@ -877,7 +878,6 @@
           <EntitySetMapping Name="TaiKhoans">
             <EntityTypeMapping TypeName="DA_QLKhoModel.TaiKhoan">
               <MappingFragment StoreEntitySet="TaiKhoan">
-                <ScalarProperty Name="MaCV" ColumnName="MaCV" />
                 <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
                 <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
                 <ScalarProperty Name="MaNV" ColumnName="MaNV" />

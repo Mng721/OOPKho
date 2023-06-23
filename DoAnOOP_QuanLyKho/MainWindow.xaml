@@ -360,55 +360,15 @@
                 <!--list-->
                 <materialDesign:Card Grid.Row="1" Margin="5 0 5 5" VerticalAlignment="Stretch">
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Transparent" Margin="5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
-                                <ColumnDefinition Width="auto"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="0">
-                                <DatePicker HorizontalAlignment="Left" Width="200"
-                                         Margin="5 0 5 0"
-                                         materialDesign:HintAssist.Hint="Ngày bắt đầu"
-                                         materialDesign:TextFieldAssist.HasClearButton="True"
-                                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
-                            </Grid>
-                            <Grid Grid.Column="1">
-                                <DatePicker HorizontalAlignment="Left" Width="200"
-                                         Margin="0 0 5 0"
-                                         materialDesign:HintAssist.Hint="Ngày kết thúc"
-                                         materialDesign:TextFieldAssist.HasClearButton="True"
-                                         Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
-                            </Grid>
-                            <Grid Grid.Column="2">
-                                <Button
-                                        HorizontalAlignment="Left"
-                                        Width="100"
-                                          Content="Lọc"
-                                          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                                          Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                                          ToolTip="Resource name: MaterialDesignRaisedLightDarkButton" />
-                            </Grid>
-                        </Grid>
-                        <Grid Grid.Row="1">
-                            <Separator></Separator>
-                        </Grid>
-                        <Grid Grid.Row="2">
-                            <ListView ItemsSource="{Binding TonKhoList}">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Header="STT" DisplayMemberBinding="{Binding STT}"></GridViewColumn>
-                                        <GridViewColumn Header="Tên sản phẩm" DisplayMemberBinding="{Binding Object.TenSP}"></GridViewColumn>
-                                        <GridViewColumn Header="Số lượng tồn" DisplayMemberBinding="{Binding Count}"></GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </Grid>
+                        <ListView ItemsSource="{Binding TonKhoList}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="STT" DisplayMemberBinding="{Binding STT}"></GridViewColumn>
+                                    <GridViewColumn Header="Tên sản phẩm" DisplayMemberBinding="{Binding Object.TenSP}"></GridViewColumn>
+                                    <GridViewColumn Header="Số lượng tồn" DisplayMemberBinding="{Binding Count}"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
                     </Grid>
                 </materialDesign:Card>
 

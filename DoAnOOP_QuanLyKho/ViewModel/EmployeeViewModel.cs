@@ -20,6 +20,9 @@ namespace DoAnOOP_QuanLyKho.ViewModel
         private ObservableCollection<NhanVien> _List;
         public ObservableCollection<NhanVien> List { get => _List; set { _List = value; OnPropertyChanged(); } }
 
+        private ObservableCollection<ChucVu> _PositionsList;
+        public ObservableCollection<ChucVu> PositionsList { get => _PositionsList; set { _PositionsList = value; OnPropertyChanged(); } }
+
         private NhanVien _SelectedItem;
         public NhanVien SelectedItem
         {
@@ -35,6 +38,7 @@ namespace DoAnOOP_QuanLyKho.ViewModel
                     SelectedGender = SelectedItem.GioiTinh1;
                     CMND = SelectedItem.CMND;
                     NgaySinh = SelectedItem.NgaySinh;
+                    SelectedPosition = SelectedItem.ChucVu;
                 }
             }
         }
@@ -49,12 +53,23 @@ namespace DoAnOOP_QuanLyKho.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        private ChucVu _SelectedPosition;
+        public ChucVu SelectedPosition
+        {
+            get => _SelectedPosition;
+            set
+            {
+                _SelectedPosition = value;
+                OnPropertyChanged();
+            }
+        }
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
         private string _DisplayName;
-        public string DisplayName { get => _DisplayName; set { _DisplayName = value.Trim(); OnPropertyChanged(); } }
+        public string DisplayName { get => _DisplayName; set { _DisplayName = value; OnPropertyChanged(); } }
 
         private string _SDT;
         public string SDT { get => _SDT; set { _SDT = value.Trim() ; OnPropertyChanged(); } }
@@ -68,15 +83,16 @@ namespace DoAnOOP_QuanLyKho.ViewModel
         {
             List = new ObservableCollection<NhanVien>(DataProvider.Ins.DB.NhanViens);
             GendersList = new ObservableCollection<GioiTinh>(DataProvider.Ins.DB.GioiTinhs);
+            PositionsList = new ObservableCollection<ChucVu>(DataProvider.Ins.DB.ChucVus);
 
             AddCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(DisplayName))
+                if (string.IsNullOrEmpty(DisplayName) || SelectedPosition == null)
                     return false;
                 return true;
 
             }, (p) => {
-                var Employee = new NhanVien() { TenNV = DisplayName, SDT = SDT, GioiTinh = SelectedGender.MaGT, CMND = CMND, NgaySinh = NgaySinh };
+                var Employee = new NhanVien() { TenNV = DisplayName, SDT = SDT, GioiTinh = SelectedGender.MaGT, CMND = CMND, NgaySinh = NgaySinh, MaCV = SelectedPosition.MaCV, };
                 DataProvider.Ins.DB.NhanViens.Add(Employee);
                 try
                 {
@@ -91,7 +107,7 @@ namespace DoAnOOP_QuanLyKho.ViewModel
 
             EditCommand = new RelayCommand<object>((p) =>
             {
-                if (string.IsNullOrEmpty(DisplayName) || SelectedItem == null || SelectedGender == null)
+                if (string.IsNullOrEmpty(DisplayName) || SelectedItem == null || SelectedGender == null || SelectedPosition == null)
                 {
                     return false; 
                 }
@@ -115,9 +131,17 @@ namespace DoAnOOP_QuanLyKho.ViewModel
                 {
                     MessageBox.Show("Số điện thoại không hợp lệ");
                 }
-                Employee.CMND = CMND;
+                if (CMND.Length == 12 || CMND.Length == 9)
+                {
+                    Employee.CMND = CMND;
+                }
+                else
+                {
+                    MessageBox.Show("Chứng minh nhân dân không hợp lệ");
+                }
                 Employee.GioiTinh = SelectedGender.MaGT;
                 Employee.NgaySinh = NgaySinh;
+                Employee.MaCV = SelectedPosition.MaCV;
                 try
                 {
                     DataProvider.Ins.DB.SaveChanges();

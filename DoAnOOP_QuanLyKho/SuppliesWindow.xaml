@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        DataContext="{StaticResource MainVM}"
+        DataContext="{StaticResource SupplyVM}"
         Title="Phần mềm quản lý kho" 
         MinHeight="600" 
         MinWidth="800"
@@ -39,19 +39,25 @@
 
             <materialDesign:Card Grid.Row="0" Margin="5">
                 <WrapPanel>
-                    <TextBox Text="{Binding TenSP, UpdateSourceTrigger=PropertyChanged}" Margin="10 5 15 5" materialDesign:HintAssist.Hint="Tên sản phẩm" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-                    <ComboBox materialDesign:ComboBoxAssist.MaxLength="2" 
-                              Text="{Binding DonVi.TenDV}"
-                              materialDesign:HintAssist.Hint="Đơn vị đo" 
-                              Margin=" 0 12 15 0"
-                              IsEditable="True" 
-                              ItemsSource="{Binding Donvi.TenDV, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></ComboBox>
+                    <TextBox Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10 5 15 5" materialDesign:HintAssist.Hint="Tên sản phẩm" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
                     <ComboBox materialDesign:ComboBoxAssist.MaxLength="2"
-                              Text="{Binding ProductType}"
-                              materialDesign:HintAssist.Hint="Loại"
-                              Margin=" 0 12 15 0" 
+                              DisplayMemberPath="TenDV"
+                              materialDesign:HintAssist.Hint="Đơn vị đo"
+                              Margin="0 5 10 5" 
+                              SelectedItem="{Binding SelectedUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                               IsEditable="True"
-                              ItemBindingGroup="{Binding LoaiSanPham.TenLoai, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></ComboBox>
+                              Height="35"
+                              VerticalContentAlignment="Bottom"
+                              ItemsSource="{Binding UnitList}"/>
+                    <ComboBox materialDesign:ComboBoxAssist.MaxLength="2"
+                              DisplayMemberPath="TenLoai"
+                              materialDesign:HintAssist.Hint="Loại sản phẩm"
+                              Margin="0 5 10 5" 
+                              SelectedItem="{Binding SelectedType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              IsEditable="True"
+                              Height="35"
+                              VerticalContentAlignment="Bottom"
+                              ItemsSource="{Binding TypeList}"/>
                 </WrapPanel>
             </materialDesign:Card>
 
@@ -74,9 +80,8 @@
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Tên sản phẩm" DisplayMemberBinding="{Binding TenSP}"></GridViewColumn>
-                                <GridViewColumn Header="Đơn vị đo" DisplayMemberBinding="{Binding TenDV}"></GridViewColumn>
-                                <GridViewColumn Header="Loại sản phẩm" DisplayMemberBinding="{Binding TenLoai}"></GridViewColumn><GridViewColumn Header="Loại sản phẩm" DisplayMemberBinding="{Binding TenLoai}"></GridViewColumn>
-                                <GridViewColumn Header="Giá sản phẩm" DisplayMemberBinding="{Binding GiaSanPham}"></GridViewColumn>
+                                <GridViewColumn Header="Đơn vị đo" DisplayMemberBinding="{Binding DonViTinh.TenDV}"></GridViewColumn>
+                                <GridViewColumn Header="Loại sản phẩm" DisplayMemberBinding="{Binding LoaiSanPham.TenLoai}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

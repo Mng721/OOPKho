@@ -17,13 +17,13 @@ namespace DoAnOOP_QuanLyKho.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ChucVu()
         {
-            this.TaiKhoans = new HashSet<TaiKhoan>();
+            this.NhanViens = new HashSet<NhanVien>();
         }
     
         public string TenCV { get; set; }
         public int MaCV { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TaiKhoan> TaiKhoans { get; set; }
+        public virtual ICollection<NhanVien> NhanViens { get; set; }
     }
 }

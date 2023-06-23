@@ -9,16 +9,20 @@
 
 namespace DoAnOOP_QuanLyKho.Model
 {
+    using DoAnOOP_QuanLyKho.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class ChiTietPhieuXuat
+    public partial class ChiTietPhieuXuat : BaseViewModel
     {
         public int MaCTPXuat { get; set; }
         public int MaCTPNhap { get; set; }
         public int MaPX { get; set; }
         public int MaSP { get; set; }
         public int SLXuat { get; set; }
+
+        private decimal _DonGiaBan;
+        public decimal DonGiaBan { get => _DonGiaBan;set { _DonGiaBan = value; OnPropertyChanged(); } }
     
         public virtual ChiTietPhieuNhap ChiTietPhieuNhap { get; set; }
         public virtual PhieuXuat PhieuXuat { get; set; }

@@ -22,13 +22,14 @@ namespace DoAnOOP_QuanLyKho.Model
         }
 
         public int MaNCC { get; set; }
+
         private string _TenNCC;
         public string TenNCC { get => _TenNCC; set { _TenNCC = value; OnPropertyChanged(); } }
 
         private string _DiaChi;
         public string DiaChi { get => _DiaChi; set { _DiaChi = value; OnPropertyChanged(); } }
 
-        public string _SDT;
+        private string _SDT;
         public string SDT { get => _SDT; set { _SDT = value; OnPropertyChanged(); } }
 
         private string _Email;

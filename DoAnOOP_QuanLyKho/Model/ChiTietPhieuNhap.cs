@@ -9,10 +9,11 @@
 
 namespace DoAnOOP_QuanLyKho.Model
 {
+    using DoAnOOP_QuanLyKho.ViewModel;
     using System;
     using System.Collections.Generic;
     
-    public partial class ChiTietPhieuNhap
+    public partial class ChiTietPhieuNhap : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ChiTietPhieuNhap()
@@ -23,14 +24,29 @@ namespace DoAnOOP_QuanLyKho.Model
         public int MaCTPNhap { get; set; }
         public int MaPN { get; set; }
         public int MaSP { get; set; }
-        public int SoLuongNhap { get; set; }
-        public decimal DonGiaNhap { get; set; }
-        public decimal DonGiaXuat { get; set; }
-        public System.DateTime HSD { get; set; }
+
+        private int _SoLuongNhap;
+        public int SoLuongNhap { get => _SoLuongNhap; set { _SoLuongNhap = value; OnPropertyChanged(); } }
+
+        private decimal _DonGiaNhap;
+        public decimal DonGiaNhap { get => _DonGiaNhap; set { _DonGiaNhap = value; OnPropertyChanged(); } }
+
+        private decimal _DonGiaXuat;
+        public decimal DonGiaXuat { get => _DonGiaXuat; set { _DonGiaXuat = value; OnPropertyChanged(); } }
+
+        private decimal _GiaSanPham;
+        public decimal GiaSanPham { get => _GiaSanPham; set { _GiaSanPham = value; OnPropertyChanged(); } }
+
+        private System.DateTime _HSD;
+        public System.DateTime HSD { get => _HSD; set { _HSD = value; OnPropertyChanged(); } }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietPhieuXuat> ChiTietPhieuXuats { get; set; }
-        public virtual PhieuNhap PhieuNhap { get; set; }
-        public virtual SanPham SanPham { get; set; }
+
+        private PhieuNhap _PhieuNhap;
+        public virtual PhieuNhap PhieuNhap { get => _PhieuNhap; set { _PhieuNhap = value; OnPropertyChanged(); } }
+
+        private SanPham _SanPham;
+        public virtual SanPham SanPham { get => _SanPham; set { _SanPham = value; OnPropertyChanged(); } }
     }
 }

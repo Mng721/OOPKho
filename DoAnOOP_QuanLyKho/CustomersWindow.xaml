@@ -39,9 +39,9 @@
 
             <materialDesign:Card Grid.Row="0" Margin="5">
                 <WrapPanel>
-                    <TextBox Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" Margin="10 5 10 5" materialDesign:HintAssist.Hint="Tên nhân viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-                    <TextBox Text="{Binding SDT, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 10 5" materialDesign:HintAssist.Hint="SDT" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-                    <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 10 5" MinWidth="80" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                    <TextBox Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10 5 10 5" materialDesign:HintAssist.Hint="Tên nhân viên" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                    <TextBox Text="{Binding SDT, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 10 5" materialDesign:HintAssist.Hint="SDT" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                    <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5 5 10 5" MinWidth="80" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
 
                 </WrapPanel>
             </materialDesign:Card>

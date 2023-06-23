@@ -90,6 +90,9 @@
     <Compile Include="EmployeesWindow.xaml.cs">
       <DependentUpon>EmployeesWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InputInfosWindow.xaml.cs">
+      <DependentUpon>InputInfosWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InputsWindow.xaml.cs">
       <DependentUpon>InputsWindow.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\TonKho.cs" />
+    <Compile Include="OutputInfosWindow.xaml.cs">
+      <DependentUpon>OutputInfosWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OutputsWindow.xaml.cs">
       <DependentUpon>OutputsWindow.xaml</DependentUpon>
     </Compile>
@@ -172,8 +178,12 @@
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\EmployeeViewModel.cs" />
+    <Compile Include="ViewModel\InputInfoViewModel.cs" />
+    <Compile Include="ViewModel\InputViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\OutputInfoViewModel.cs" />
+    <Compile Include="ViewModel\OutputViewModel.cs" />
     <Compile Include="ViewModel\SupplierViewModel.cs" />
     <Compile Include="ViewModel\SupplyViewModel.cs" />
     <Compile Include="ViewModel\UnitViewModel.cs" />
@@ -186,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EmployeesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InputInfosWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -209,6 +223,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OutputInfosWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OutputsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

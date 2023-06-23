@@ -81,6 +81,7 @@
     <EntitySetMapping Name="NhanViens">
       <EntityTypeMapping TypeName="DA_QLKhoModel.NhanVien">
         <MappingFragment StoreEntitySet="NhanVien">
+          <ScalarProperty Name="MaCV" ColumnName="MaCV" />
           <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
           <ScalarProperty Name="CMND" ColumnName="CMND" />
           <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
@@ -123,7 +124,6 @@
     <EntitySetMapping Name="TaiKhoans">
       <EntityTypeMapping TypeName="DA_QLKhoModel.TaiKhoan">
         <MappingFragment StoreEntitySet="TaiKhoan">
-          <ScalarProperty Name="MaCV" ColumnName="MaCV" />
           <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
           <ScalarProperty Name="TenDangNhap" ColumnName="TenDangNhap" />
           <ScalarProperty Name="MaNV" ColumnName="MaNV" />

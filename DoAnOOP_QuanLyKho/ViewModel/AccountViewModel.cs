@@ -19,9 +19,6 @@ namespace DoAnOOP_QuanLyKho.ViewModel
         private ObservableCollection<NhanVien> _EmployeesList;
         public ObservableCollection<NhanVien> EmployeesList { get => _EmployeesList; set { _EmployeesList = value; OnPropertyChanged(); } }
 
-        private ObservableCollection<ChucVu> _PositionsList;
-        public ObservableCollection<ChucVu> PositionsList { get => _PositionsList; set { _PositionsList = value; OnPropertyChanged(); } }
-
         private TaiKhoan _SelectedItem;
         public TaiKhoan SelectedItem
         {
@@ -35,7 +32,6 @@ namespace DoAnOOP_QuanLyKho.ViewModel
                     DisplayName = SelectedItem.TenDangNhap;
                     MatKhau = SelectedItem.MatKhau;
                     SelectedEmployee = SelectedItem.NhanVien;
-                    SelectedPosition = SelectedItem.ChucVu;
                 }
             }
         }
@@ -47,17 +43,6 @@ namespace DoAnOOP_QuanLyKho.ViewModel
             set
             {
                 _SelectedEmployee = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ChucVu _SelectedPosition;
-        public ChucVu SelectedPosition
-        {
-            get => _SelectedPosition;
-            set
-            {
-                _SelectedPosition = value;
                 OnPropertyChanged();
             }
         }
@@ -77,16 +62,15 @@ namespace DoAnOOP_QuanLyKho.ViewModel
 
             List = new ObservableCollection<TaiKhoan>(DataProvider.Ins.DB.TaiKhoans);
             EmployeesList = new ObservableCollection<NhanVien>(DataProvider.Ins.DB.NhanViens);
-            PositionsList = new ObservableCollection<ChucVu>(DataProvider.Ins.DB.ChucVus);
 
             AddCommand = new RelayCommand<object>((p) =>
             {
-                if (SelectedEmployee == null || SelectedPosition == null)
+                if (SelectedEmployee == null)
                     return false;
                 return true;
                 
             }, (p) => {
-                var unit = new TaiKhoan() { TenDangNhap = DisplayName, MatKhau = MatKhau , MaCV = SelectedPosition.MaCV, MaNV = SelectedEmployee.MaNV};
+                var unit = new TaiKhoan() { TenDangNhap = DisplayName, MatKhau = MatKhau , MaNV = SelectedEmployee.MaNV};
                 DataProvider.Ins.DB.TaiKhoans.Add(unit);
                 DataProvider.Ins.DB.SaveChanges();
 
@@ -95,7 +79,7 @@ namespace DoAnOOP_QuanLyKho.ViewModel
 
             EditCommand = new RelayCommand<object>((p) =>
             {
-                if (SelectedEmployee == null || SelectedPosition == null || SelectedItem == null)
+                if (SelectedEmployee == null || SelectedItem == null)
                 {
                     return false;
                 }
@@ -113,7 +97,6 @@ namespace DoAnOOP_QuanLyKho.ViewModel
                 unit.TenDangNhap = DisplayName;
                 unit.MatKhau = MatKhau;
                 unit.MaNV = SelectedEmployee.MaNV;
-                unit.MaCV = SelectedPosition.MaCV; 
                 DataProvider.Ins.DB.SaveChanges();
 
                 SelectedItem.TenDangNhap = DisplayName;

@@ -12,7 +12,7 @@ namespace DoAnOOP_QuanLyKho.Model
     using DoAnOOP_QuanLyKho.ViewModel;
     using System;
     using System.Collections.Generic;
-    
+
     public partial class KhachHang : BaseViewModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,18 +20,16 @@ namespace DoAnOOP_QuanLyKho.Model
         {
             this.PhieuXuats = new HashSet<PhieuXuat>();
         }
-    
-        public int MaKH { get; set; }
 
+        public int MaKH { get; set; }
         private string _TenKH;
         public string TenKH { get => _TenKH; set { _TenKH = value; OnPropertyChanged(); } }
 
         private string _SDT;
         public string SDT { get => _SDT; set { _SDT = value; OnPropertyChanged(); } }
-
         private string _Email;
         public string Email { get => _Email; set { _Email = value; OnPropertyChanged(); } }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhieuXuat> PhieuXuats { get; set; }
     }

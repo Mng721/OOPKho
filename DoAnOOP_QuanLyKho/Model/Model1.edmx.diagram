@@ -5,27 +5,27 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="74b88a9bc9d94b6c86a99ce0dec768a4" Name="Diagram1" ZoomLevel="86">
-        <EntityTypeShape EntityType="DA_QLKhoModel.ChiTietPhieuNhap" Width="1.5" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="DA_QLKhoModel.ChiTietPhieuXuat" Width="1.5" PointX="7.5" PointY="1.125" />
-        <EntityTypeShape EntityType="DA_QLKhoModel.ChucVu" Width="1.5" PointX="3.75" PointY="14.25" />
-        <EntityTypeShape EntityType="DA_QLKhoModel.DonViTinh" Width="1.5" PointX="0.75" PointY="5.625" />
-        <EntityTypeShape EntityType="DA_QLKhoModel.GioiTinh" Width="1.5" PointX="1.5" PointY="14.25" />
-        <EntityTypeShape EntityType="DA_QLKhoModel.KhachHang" Width="1.5" PointX="3" PointY="5.5" />
-        <EntityTypeShape EntityType="DA_QLKhoModel.LoaiSanPham" Width="1.5" PointX="0.75" PointY="1.625" />
-        <EntityTypeShape EntityType="DA_QLKhoModel.NhaCungCap" Width="1.5" PointX="0.75" PointY="17.25" />
-        <EntityTypeShape EntityType="DA_QLKhoModel.NhanVien" Width="1.5" PointX="0.75" PointY="8.5" />
-        <EntityTypeShape EntityType="DA_QLKhoModel.PhieuNhap" Width="1.5" PointX="3" PointY="10.25" />
-        <EntityTypeShape EntityType="DA_QLKhoModel.PhieuXuat" Width="1.5" PointX="5.25" PointY="5.25" />
-        <EntityTypeShape EntityType="DA_QLKhoModel.SanPham" Width="1.5" PointX="3" PointY="1.125" />
-        <EntityTypeShape EntityType="DA_QLKhoModel.TaiKhoan" Width="1.5" PointX="6" PointY="8.875" />
+        <EntityTypeShape EntityType="DA_QLKhoModel.ChiTietPhieuNhap" Width="1.5" PointX="10.5" PointY="4.5" />
+        <EntityTypeShape EntityType="DA_QLKhoModel.ChiTietPhieuXuat" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DA_QLKhoModel.ChucVu" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="DA_QLKhoModel.DonViTinh" Width="1.5" PointX="6" PointY="8.75" />
+        <EntityTypeShape EntityType="DA_QLKhoModel.GioiTinh" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="DA_QLKhoModel.KhachHang" Width="1.5" PointX="6" PointY="14" />
+        <EntityTypeShape EntityType="DA_QLKhoModel.LoaiSanPham" Width="1.5" PointX="6" PointY="2.375" />
+        <EntityTypeShape EntityType="DA_QLKhoModel.NhaCungCap" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="DA_QLKhoModel.NhanVien" Width="1.5" PointX="3" PointY="4.375" />
+        <EntityTypeShape EntityType="DA_QLKhoModel.PhieuNhap" Width="1.5" PointX="5.25" PointY="4.875" />
+        <EntityTypeShape EntityType="DA_QLKhoModel.PhieuXuat" Width="1.5" PointX="8.25" PointY="4.875" />
+        <EntityTypeShape EntityType="DA_QLKhoModel.SanPham" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="DA_QLKhoModel.TaiKhoan" Width="1.5" PointX="5.25" PointY="11.25" />
         <AssociationConnector Association="DA_QLKhoModel.FK__ChiTietPh__MaCTP__45F365D3" />
         <AssociationConnector Association="DA_QLKhoModel.FK__ChiTietPhi__MaPN__4222D4EF" />
         <AssociationConnector Association="DA_QLKhoModel.FK__ChiTietPhi__MaSP__4316F928" />
         <AssociationConnector Association="DA_QLKhoModel.FK__ChiTietPhi__MaPX__47DBAE45" />
         <AssociationConnector Association="DA_QLKhoModel.FK__ChiTietPhi__MaSP__46E78A0C" />
-        <AssociationConnector Association="DA_QLKhoModel.FK__TaiKhoan__MaCV__2B3F6F97" />
+        <AssociationConnector Association="DA_QLKhoModel.FK__NhanVien__MaCV__286302EC" />
         <AssociationConnector Association="DA_QLKhoModel.FK__SanPham__MaDV__3A81B327" />
-        <AssociationConnector Association="DA_QLKhoModel.FK__NhanVien__GioiTi__267ABA7A" />
+        <AssociationConnector Association="DA_QLKhoModel.FK__NhanVien__GioiTi__29572725" />
         <AssociationConnector Association="DA_QLKhoModel.FK__PhieuXuat__MaKH__3E52440B" />
         <AssociationConnector Association="DA_QLKhoModel.FK__SanPham__MaLoai__3B75D760" />
         <AssociationConnector Association="DA_QLKhoModel.FK__PhieuNhap__MaNCC__30F848ED" />

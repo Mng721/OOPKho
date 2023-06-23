@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        DataContext="{StaticResource MainVM}"
-        Title="Phần mềm quản lý kho" 
+        DataContext="{StaticResource OutputVM}"
+        Title="Phần mềm quản lý kho"
         MinHeight="600" 
-        MinWidth="800"
+        MinWidth="1000"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:uc="clr-namespace:DoAnOOP_QuanLyKho.UserControlOOP"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -39,16 +39,33 @@
 
             <materialDesign:Card Grid.Row="0" Margin="5">
                 <WrapPanel>
-                    <TextBox Text="{Binding TenSP, UpdateSourceTrigger=PropertyChanged}" Margin="10 5 10 5" materialDesign:HintAssist.Hint="Tên sản phẩm" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-                    <DatePicker Name="NgayNhap"
-                                Text="{Binding NgayXuat, UpdateSourceTrigger=PropertyChanged}"
-                                Width="100"
-                                materialDesign:HintAssist.Hint="Ngày nhập"
-                                Margin="5 5 10 4"
-                                Height="35"
-                                VerticalContentAlignment="Bottom"/>
-                    <TextBox Text="{Binding SoLuongXuat, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 10 5" MinWidth="10" materialDesign:HintAssist.Hint="Số lượng nhập" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-                    <TextBox Text="{Binding DonGiaXuat, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 10 5" MinWidth="80" materialDesign:HintAssist.Hint="Đơn giá xuất" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                    <ComboBox materialDesign:ComboBoxAssist.MaxLength="2"
+                              DisplayMemberPath="TenNV"
+                              materialDesign:HintAssist.Hint="Nhân viên xuất"
+                              Margin="0 5 10 5" 
+                              SelectedItem="{Binding SelectedEmployee, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Height="35"
+                              IsEditable="True"
+                              VerticalContentAlignment="Bottom"
+                              ItemsSource="{Binding EmployeesList}"/>
+                    <DatePicker Name="NgayXuat"
+                                    SelectedDate="{Binding NgayXuat, UpdateSourceTrigger=PropertyChanged}"
+                                    Grid.Column="2"
+                                    Width="100"
+                                    SelectedDateFormat="Short"
+                                    materialDesign:HintAssist.Hint="Ngày Xuất"
+                                    Margin="5 5 10 4"
+                                    Height="35"
+                                    VerticalContentAlignment="Bottom"/>
+                    <ComboBox materialDesign:ComboBoxAssist.MaxLength="2"
+                              DisplayMemberPath="TenKH"
+                              materialDesign:HintAssist.Hint="Khách hàng"
+                              Margin="0 5 10 5" 
+                              SelectedItem="{Binding SelectedCustomer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Height="35"
+                              IsEditable="True"
+                              VerticalContentAlignment="Bottom"
+                              ItemsSource="{Binding CustomersList}"/>
                 </WrapPanel>
             </materialDesign:Card>
 
@@ -58,10 +75,12 @@
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Content="Thêm" Command="{Binding AddCommand}" Margin="5" Width="120" HorizontalAlignment="Center"></Button>
-                    <Button Grid.Column="1" Content="Sửa" Command="{Binding EditCommand}" Margin="5" Width="120" HorizontalAlignment="Center"></Button>
-                    <Button Grid.Column="2" Content="Xóa" Command="{Binding DeleteCommand}" Margin="5" Width="120" HorizontalAlignment="Center"></Button>
+                    <Button Grid.Column="0" Content="Xem chi tiết" Command="{Binding InfoCommand}" Margin="5" Width="120" HorizontalAlignment="Center"></Button>
+                    <Button Grid.Column="1" Content="Thêm" Command="{Binding AddCommand}" Margin="5" Width="120" HorizontalAlignment="Center"></Button>
+                    <Button Grid.Column="2" Content="Sửa" Command="{Binding EditCommand}" Margin="5" Width="120" HorizontalAlignment="Center"></Button>
+                    <Button Grid.Column="3" Content="Xóa" Command="{Binding DeleteCommand}" Margin="5" Width="120" HorizontalAlignment="Center"></Button>
                 </Grid>
             </materialDesign:Card>
 
@@ -70,10 +89,9 @@
                     <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Tên sản phẩm" DisplayMemberBinding="{Binding SanPham.TenSP}"></GridViewColumn>
-                                <GridViewColumn Header="Ngày Xuất" DisplayMemberBinding="{Binding PhieuNhap.NgayNhap}"></GridViewColumn>
-                                <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding SoLuongNhap}"></GridViewColumn>
-                                <GridViewColumn Header="Đơn giá xuất" DisplayMemberBinding="{Binding DonGiaNhap}"></GridViewColumn>
+                                <GridViewColumn Header="Nhân viên xuất" DisplayMemberBinding="{Binding NhanVien.TenNV}"></GridViewColumn>
+                                <GridViewColumn Header="Ngày xuất" DisplayMemberBinding="{Binding NgayXuat, StringFormat='dd/MM/yyyy'}"></GridViewColumn>
+                                <GridViewColumn Header="Khách Hàng" DisplayMemberBinding="{Binding KhachHang.TenKH}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

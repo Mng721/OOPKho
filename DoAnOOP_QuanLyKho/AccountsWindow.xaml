@@ -49,18 +49,8 @@
                               VerticalContentAlignment="Bottom"
                               ItemsSource="{Binding EmployeesList}">
                     </ComboBox>
-                    <TextBox Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 10 5" materialDesign:HintAssist.Hint="Tên đăng nhập" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-                    <TextBox Text="{Binding MatKhau, UpdateSourceTrigger=PropertyChanged}" Margin="0 5 10 5" materialDesign:HintAssist.Hint="Tên mật khẩu" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-                    <ComboBox materialDesign:ComboBoxAssist.MaxLength="2"
-                              DisplayMemberPath="TenCV"
-                              materialDesign:HintAssist.Hint="Chức vụ"
-                              Margin="0 5 10 5" 
-                              SelectedItem="{Binding SelectedPosition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              Height="35"
-                              IsEditable="True"
-                              VerticalContentAlignment="Bottom"
-                              ItemsSource="{Binding PositionsList}">
-                    </ComboBox>
+                    <TextBox Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0 5 10 5" materialDesign:HintAssist.Hint="Tên đăng nhập" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                    <TextBox Text="{Binding MatKhau, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0 5 10 5" materialDesign:HintAssist.Hint="Tên mật khẩu" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
                 </WrapPanel>
             </materialDesign:Card>
 
@@ -85,7 +75,6 @@
                                 <GridViewColumn Header="Tên nhân viên" DisplayMemberBinding="{Binding NhanVien.TenNV}"></GridViewColumn>
                                 <GridViewColumn Header="Tên đăng nhập" DisplayMemberBinding="{Binding TenDangNhap}"></GridViewColumn>
                                 <GridViewColumn Header="Mật khẩu" DisplayMemberBinding="{Binding MatKhau}"></GridViewColumn>
-                                <GridViewColumn Header="Chức vụ" DisplayMemberBinding="{Binding ChucVu.TenCV}"></GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>

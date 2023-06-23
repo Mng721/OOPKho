@@ -47,11 +47,11 @@ namespace DoAnOOP_QuanLyKho.ViewModel
                 var displayList = DataProvider.Ins.DB.DonViTinhs.Where(x => x.TenDV == DisplayName);
                 if (displayList != null && displayList.Count() != 0)
                 {
-                    return true;
+                    return false;
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
             }, (p) => {
                 var unit = new DonViTinh() { TenDV = DisplayName };

@@ -16,7 +16,9 @@ namespace DoAnOOP_QuanLyKho.Model
     public partial class TaiKhoan : BaseViewModel
     {
         public int MaTK { get; set; }
-        public int MaNV { get; set; }
+
+        private int _MaNV;
+        public int MaNV { get => _MaNV; set { _MaNV = value; OnPropertyChanged(); } }
 
         private string _TenDangNhap;
         public string TenDangNhap { get => _TenDangNhap; set { _TenDangNhap = value; OnPropertyChanged(); } }
@@ -24,28 +26,7 @@ namespace DoAnOOP_QuanLyKho.Model
         private string _MatKhau;
         public string MatKhau { get => _MatKhau; set { _MatKhau = value; OnPropertyChanged(); } }
 
-        public int MaCV { get; set; }
-
         private NhanVien _NhanVien;
-        public virtual NhanVien NhanVien
-        {
-            get => _NhanVien;
-            set
-            {
-                _NhanVien = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ChucVu _ChucVu;
-        public virtual ChucVu ChucVu
-        {
-            get => _ChucVu;
-            set
-            {
-                _ChucVu = value;
-                OnPropertyChanged();
-            }
-        }
+        public virtual NhanVien NhanVien { get => _NhanVien; set { _NhanVien = value; OnPropertyChanged(); } }
     }
 }
